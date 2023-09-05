@@ -136,3 +136,19 @@ print(min(a)) #organizes de list with sort
 
 
 print(a.index(7)) #Index devuelve la posición del índice en una lista para el parámetro dado. 
+
+
+tupla_datos = ('física', 'química', 1997, 2000)
+tupla_num = (1, 2, 3, 4, 5 )
+tupla_letras = "a", "b", "c", "d" #You can have tuples without paretesis
+
+print(type(tupla_letras))
+
+perro = ("Canis Familiaris", "perro", "carnívoro", 12)
+
+perro = perro + ("doméstico",)
+print(perro)
+# el resultado...
+#("Canis Familiaris", "Perro", "carnívoro", 12, "doméstico")
+
+
