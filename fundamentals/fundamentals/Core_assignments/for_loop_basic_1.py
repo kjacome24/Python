@@ -37,9 +37,9 @@ for i in range (2018,0,-4):
     print(i)
 
 #6 
-lownum = -3
+lownum = 0
 highnum = 18
-mult = 3
+mult = 4
 listm = []
 
 for i in range (lownum,highnum+1,1):
