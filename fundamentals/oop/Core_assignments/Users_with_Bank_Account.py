@@ -1,3 +1,36 @@
+class User:
+    bank_name = "First national dojo bank"
+    user_list = []
+    def __init__(self,name, email):
+        self.name = name
+        self.email = email 
+        self.account = BankAccount(balance=0,interest_rate=0.02)
+        User.user_list.append(self)
+    
+    def deposit(self,amount):
+        self.account.balance += amount
+        return self
+    
+    def make_withdrawa(self,amountw):
+        self.account.withdraw(amountw)
+        return self
+    
+    def display_user_balance(self):
+        self.account.print_balance()
+        return self
+    
+    def transfer_m(self,destination,amount):
+        self.account.transfer_money(destination,amount)
+        return self
+    
+    def show_info(self):
+        print("Your information is listed below:" + '\n' + f"Name: {self.name}"+ '\n' +f"Email Address: {self.email}"+ '\n' +f"Balance: {self.account.balance}"+ '\n' +f"Interst rate:{self.account.interest_rate}")
+    
+    
+
+
+
+#####################################BankAccount class
 class BankAccount:
     bank_name = "Kevin's bank"
     all_accounts = []
@@ -58,14 +91,19 @@ class BankAccount:
         for w in cls.all_accounts:
             print(f"Cuenta #: {w.account_number}, Balance: {w.balance}, interest rate:{w.interest_rate}")
 
-x = BankAccount()
-y = BankAccount()
-
-x.deposit(1000).deposit(900).deposit(88).withdraw(1000).increase_interest().print_balance()
-y.deposit(700).deposit(300).withdraw(100).withdraw(100).withdraw(100).withdraw(100).increase_interest().print_balance()
-
+guido = User("guido","guido@python.com")
+monty = User("monty","monty@python.com")
+kevin = User("kevin","kevin@python.com")
+Artur = User("Artur","Artur@python.com")
 
 
-y.transfer_money(3,600)
 
-BankAccount.show_instances()
+
+guido.deposit(100)
+guido.deposit(100)
+guido.deposit(100)
+guido.make_withdrawa(300)
+# guido.display_user_balance()
+# Artur.show_info()
+guido.transfer_m(1,1100)
+guido.account.show_instances()
