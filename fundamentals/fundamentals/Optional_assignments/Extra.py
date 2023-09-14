@@ -2,7 +2,7 @@
 x = input("Please type an integer from 2 to 1000:")
 
 def extrap (y):
-        while not y.isdigit() or int(y) >= 2001 or int(y) <= 1:
+        while not y.isdigit() or int(y) >= 1001 or int(y) <= 1:
             y = input("Please type an integer from 2 to 1000:")
         else:
             y = int(y)
