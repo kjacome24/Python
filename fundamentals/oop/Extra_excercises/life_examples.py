@@ -96,9 +96,12 @@ class CappuccinoM( CaféM ):##########Inheritance & Poliformis
     def limpiar(self):###Poliformis
         print("¡Limpiando la espuma")
 
-y = CappuccinoM("Americano")
+parent = CaféM("Americano")
+hijo = CappuccinoM("Americano")
+
 # y.hacer_cappuccino("Arabica")
-y.limpiar()
+parent.limpiar()
+hijo.limpiar()
 print(y.temp_agua)
 
 class Barista: #########Abstraction
@@ -124,3 +127,19 @@ x = barista2("Kevin")
 
 x.printx()
 
+class Persona:
+    def pagar_cuenta(self):
+        raise NotImplementedError
+# Millonario hereda de Persona
+class Millonario(Persona):
+    def pagar_cuenta(self):
+        print("Aquí tienes. Quédate con el cambio.")
+# Estudiante de posgrado también hereda de la clase Persona
+class EstudiantePosgrado(Persona):
+    def pagar_cuenta(self):
+        print("¿Puedo deberle diez dólares o lavar los platos?")
+
+
+x = Persona()
+y = Millonario()
+y.pagar_cuenta()
