@@ -312,3 +312,8 @@ def número_de_lagos_grandes():
     print(5)
 x = número_de_lagos_grandes()
 print(x)
+
+
+arr = [1,3,5,7,12,15]
+arr[0], arr[1], arr[2] = arr[2], arr[0], arr[1]
+print(arr)
