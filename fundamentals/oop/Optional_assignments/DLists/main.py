@@ -46,12 +46,8 @@ class Dlist:
                         runner.next.next.prev = new_node
                 runner = runner.next
                 Dlist.counter += 1
-        print(Dlist.counter)
         if Dlist.counter < n:
             self.addtoback(val)
-
-
-
     def print_values(self):
         runner = self.head
         while (runner != None):
@@ -59,11 +55,54 @@ class Dlist:
             print("---------------------------------")
             runner = runner.next
         return self
+    
+    def remove_from_front(self):
+        if self.head == None:
+            print("There is nothing to delete, the list is already empty")
+        else:
+            if self.head.next == None:
+                self.head = None
+            else:
+                self.head = self.head.next 
+                self.head.prev = None
+        return self
+    
+    def remove_from_back(self):
+        if self.head == None:
+            print("There is nothign to delete")
+        else:
+            if self.tail.prev == None:
+                self.tail = None
+                self.head = None
+            else:
+                self.tail = self.tail.prev 
+                self.tail.next = None
+        return self
+    
+    def remove_val(self,val):
+        if val == self.head.val:
+            self.remove_from_front()
+        elif val == self.tail.val:
+            self.remove_from_back()
+        else:
+            runner_right = self.head
+            runner_left = self.tail ##this direction was not completed but the mechanic shoul be pretty similar. 
+            while runner_right != None:
+                if val == runner_right.val:
+                    runner_right.prev.next = runner_right.next
+                    runner_right.next.prev = runner_right.prev
+                runner_right = runner_right.next
+
 
 my_dlist = Dlist()
 my_dlist.addtofront("Duque")
 my_dlist.addtofront("Jacome")
 my_dlist.addtofront("Arturo")
 my_dlist.addtofront("kevin")
-my_dlist.insert_at("rey",2)
+my_dlist.insert_at("rey",3)
+
+
+my_dlist.remove_val("Jacome")
 my_dlist.print_values()
+# print(my_dlist.head)
+# print(my_dlist.tail)
