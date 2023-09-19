@@ -1,6 +1,5 @@
 ##########List
 class Slist:
-    slista = []
     counterl = 0
     def __init__(self):
         self.head = None
@@ -12,7 +11,6 @@ class Slist:
         new_node.next = self.head
         #set the list's head to the new node
         self.head = new_node
-        Slist.slista.append(new_node)
         return self
     
     def add_to_back(self,val):
@@ -94,5 +92,6 @@ class SLNode:
 
 my_list = Slist()
 my_list.add_to_back("arturo").add_to_back("Jacome").add_to_back("Duque")
-my_list.insert_at("kevin",5)
+my_list.insert_at("kevin",0)
+my_list.remove_from_back().remove_from_back().remove_from_back().remove_from_back().remove_from_back()
 my_list.print_values()
