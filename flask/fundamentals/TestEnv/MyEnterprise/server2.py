@@ -26,6 +26,15 @@ def hola(nombre, apellido,edad):
 def user (nombre, apellido,edad):
     return render_template('user.html',nombre = nombre,apellido = apellido, edad = edad)
 
+# Ejemplo de jinja: repetición de texto
+@app.route('/repeat/<int:num>/<string:texto>')
+def repeat(num, texto):
+    return render_template('repeat.html', num=num, texto=texto)
+
+# Ejemplo de jinja para archivos estáticos
+@app.route('/president/')
+def president():
+    return render_template('president.html')
 
 
 if __name__ == "__main__": # Se asegura de que este archivo se ejecute directamente y no desde un módulo diferente

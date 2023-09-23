@@ -143,3 +143,12 @@ class EstudiantePosgrado(Persona):
 x = Persona()
 y = Millonario()
 y.pagar_cuenta()
+
+
+###########Important built-in functions for chains,strings and lists
+
+# max(sequence) devuelve el valor más grande en la secuencia
+# sum(sequence) devuelve la suma de todos los valores en la secuencia
+# map(función, sequence) aplica la función a cada elemento de la secuencia que pasas. Devuelve una lista de los resultados.
+# min(sequence) devuelve el valor más bajo de una secuencia.
+# sorted(sequence) devuelve una lista ordenada de los valores de una secuencia

@@ -1,1 +1,1 @@
-__all__ = ["test_modulez"]
+__all__ = ["my_modules.test_module"]

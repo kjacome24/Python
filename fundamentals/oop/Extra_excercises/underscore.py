@@ -36,3 +36,5 @@ print(evens)
 
 evens = _.reject([1,2,3,4,5,6], lambda x: x%2==0) # debería devolver [1,3,5]
 print(evens)
+
+

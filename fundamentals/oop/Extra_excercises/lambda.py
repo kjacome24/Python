@@ -26,6 +26,8 @@ def incrementor(num):
     return lambda x: num + x
 x = incrementor(2)
 print(x(2))
+
 ###within map buil-in funcionality
 my_arr = [1,2,3,4,5]
 print(list(map(lambda x: x ** 2, my_arr)))
+print(list(map(lambda x: x+2,[1,2,3,4,5,6])))
