@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Preahvihear&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Preahvihear', sans-serif;
+}
+header{
+    height: 100px;
+    display: flex;
+    align-items: self-end;
+    justify-content: center;
+
+    }
+main{
+    height: auto;
+    margin: 0 auto;
+    align-items: start;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+div{
+    background-color:{{coloru}};
+    width: 200PX;
+    height: 200PX;
+    margin: 2%;
+    border: 2px black solid;
+    border-radius: 15px;
+
+}
+
+</style>
+</head>
+<body>
+    <header>
+        <h1>Welcome!</h1>
+    </header>
+    <main>
+        {%for i in range (num)%}
+        <div></div>
+        {%endfor%}
+    </main>
+</body>
+</html>
