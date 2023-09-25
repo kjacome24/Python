@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Preahvihear&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
     <title>Document</title>
 </head>
 <body>
@@ -19,9 +20,9 @@
                 <div class="row">
                     {%for x in range (rows)%}
                     {%if list_columns[x]==0%}
-                    <div style="background-color:{{colorn}};" class="cola"></div>
+                    <div style="background-color:{{colorn}};" class="cola" onmouseover="invertcolor(this)" onmouseout="revertcolor(this)"></div>
                     {%else:%}
-                    <div style="background-color:{{colorn2}};" class="colb"></div>
+                    <div style="background-color:{{colorn2}};" class="colb" onmouseover="invertcolor(this)" onmouseout="revertcolor(this)"></div>
                     {%endif%}
                     {%endfor%}
                 </div>
@@ -29,9 +30,9 @@
                 <div class="row">
                     {%for x in range (rows)%}
                     {%if list_columns[x]==0%}
-                    <div style="background-color:{{colorn2}};" class="colb"></div>
+                    <div style="background-color:{{colorn2}};" class="colb" onmouseover="invertcolor(this)" onmouseout="revertcolor(this)"></div>
                     {%else:%}
-                    <div style="background-color:{{colorn}};" class="cola"></div>
+                    <div style="background-color:{{colorn}};" class="cola" onmouseover="invertcolor(this)" onmouseout="revertcolor(this)"></div>
                     {%endif%}
                     {%endfor%}
                 </div>

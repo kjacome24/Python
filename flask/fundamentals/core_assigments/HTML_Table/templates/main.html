@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Preahvihear&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Full name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in users %}
+                    <tr onmouseover="shadow(this)" onmouseout="unshadow(this)">
+                        <td>{{i['first_name']}}</td>
+                        <td>{{i['last_name']}}</td>
+                        <td>{{i['first_name']}} {{i['last_name']}}</td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
