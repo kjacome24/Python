@@ -27,7 +27,26 @@
         </div>
         {% elif validator==3%}
         <div class="box4">
-            <h2>You Guessed it! The number was.</h2>
+            <h2>You Guessed it! The number was {{winner}}.</h2>
+            <h2>You tried {{xtimes}} before hitting the number.</h2>
+            <form class="btnx" action='/destroy_session' method='post'>
+                <div class="mb-3">
+                    <input type='submit' class="btn btn-primary" name="Play_again" value='Play again'>
+                </div>
+            </form>
+            <form class="btnx2" action='/users' method='post'>
+                <div class="mb-3">
+                    <label class="form-label" for='user'>User:</label>
+                    <input type='text' name='user'>
+                </div>
+                <div class="mb-3">
+                <input type='submit' value='Register user'>
+                </div>
+            </form>
+        </div>
+        {% elif validator==4%}
+        <div style="background-color: red;" class="box4">
+            <h2>You tried {{xtimes}} times and failed.</h2>
             <form class="btnx" action='/destroy_session' method='post'>
                 <input type='submit' class="btn btn-primary" name="Play_again" value='Play again'>
             </form>
@@ -35,7 +54,7 @@
         {% else%}
         {% endif %}
         <div class="box2">
-            <form action='/' method='post'>
+            <form action='/function' method='post'>
                 <label class="form-label" for='number'>Take a guess!!</label>
                 <input id='number' type='text' name='number'>
                 <input type='submit' class="btn btn-warning" name="Guess" value='True'>
