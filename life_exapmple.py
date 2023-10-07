@@ -71,7 +71,7 @@ print(type(entero_a_complejo))
 #############module to use random option. 
 import random
 
-print(random.randint(2,5))
+print(random.randint(-52,5))
 
 
 #########How to concat a non-string to a string
@@ -317,3 +317,9 @@ print(x)
 arr = [1,3,5,7,12,15]
 arr[0], arr[1], arr[2] = arr[2], arr[0], arr[1]
 print(arr)
+
+
+import datetime
+x = datetime.datetime.now()
+
+print(x.strftime("%c"))
