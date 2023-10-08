@@ -7,9 +7,9 @@ app.secret_key = '123456'
 
 @app.route('/')
 def index():
-    if 'total_gold' not in session:
+    if session.get('total_gold') == None:
         session['total_gold']=0
-    if 'activities' not in session:
+    if session.get('activities') == None:
         session['activities']= []
     return render_template("index.html")
 

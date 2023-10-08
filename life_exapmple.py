@@ -323,3 +323,6 @@ import datetime
 x = datetime.datetime.now()
 
 print(x.strftime("%c"))
+
+x = [3,4,1]
+print(x[-1])
