@@ -1,0 +1,53 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Preahvihear', sans-serif;
+}
+
+body{display: flex;
+    flex-direction: column;
+    height: 400px;}
+
+header{
+
+    flex: 1;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 30px;
+
+}
+
+main{
+flex:1;
+padding-left: 50px;
+padding-right: 50px;
+}
+
+footer{
+
+    flex: 1;
+    padding-left: 50px;
+    padding-right: 50px;
+    display: flex;
+    align-items: center;
+}
+
+table{
+    border-collapse: collapse;
+    border: 2px solid black;
+}
+
+tH, td{
+    border-collapse: collapse; 
+    border: solid;
+
+}
+
+.upborder{
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+
+#upborder2{
+    border: 2px solid black;
+}
