@@ -1,0 +1,3 @@
+No excercise available
+
+Within the file https://sqlzoo.net/wiki/SQL_Tutorial there is nothing to execute. 

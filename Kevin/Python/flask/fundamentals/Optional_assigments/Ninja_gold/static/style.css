@@ -1,0 +1,63 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Preahvihear', sans-serif;
+}
+
+.green { 
+    color: green;
+}
+.red {
+    color: red;
+}
+#activities {
+    height: 150px;
+    overflow: scroll;
+    border: 2px solid black;
+}
+
+
+body{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 500px;
+}
+
+header{
+    flex: 0.2;
+display: flex;}
+
+#goldbox{
+    border: 2px solid black;
+    display: inline-block;
+    height: 25px;
+    width: 100px;
+    padding-left: 10px;
+    margin-left: 20px;
+}
+
+#titlegold{
+    display: inline-block;
+}
+
+main{
+    flex: 1;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.box{
+    border: 2px solid black;
+    flex: 1;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+footer{
+    flex: 1;}

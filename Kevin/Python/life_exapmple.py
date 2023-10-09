@@ -71,7 +71,7 @@ print(type(entero_a_complejo))
 #############module to use random option. 
 import random
 
-print(random.randint(2,5))
+print(random.randint(-52,5))
 
 
 #########How to concat a non-string to a string
@@ -312,3 +312,17 @@ def número_de_lagos_grandes():
     print(5)
 x = número_de_lagos_grandes()
 print(x)
+
+
+arr = [1,3,5,7,12,15]
+arr[0], arr[1], arr[2] = arr[2], arr[0], arr[1]
+print(arr)
+
+
+import datetime
+x = datetime.datetime.now()
+
+print(x.strftime("%c"))
+
+x = [3,4,1]
+print(x[-1])
