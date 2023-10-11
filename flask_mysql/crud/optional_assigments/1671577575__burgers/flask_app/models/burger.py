@@ -1,5 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-
+from flask_app.models import topping
 class Burger:
     def __init__(self,data):
         self.id = data['id']
@@ -9,11 +9,14 @@ class Burger:
         self.calories = data['calories']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.toppings = []
 
     @classmethod
     def save(cls,data):
         query = "INSERT INTO burgers (name,bun,meat,calories,restaurant_id,created_at,updated_at) VALUES (%(name)s,%(bun)s,%(meat)s,%(calories)s,%(restaurant_id)s,NOW(),NOW())"
-        return connectToMySQL('login_reg').query_db(query,data)
+        connectToMySQL('login_reg').query_db(query,data)
+        query = "select * from burgers order by id desc limit 1;"
+        return connectToMySQL('login_reg').query_db(query)
 
     @classmethod
     def get_all(cls):
@@ -40,3 +43,37 @@ class Burger:
     def destroy(cls,data):
         query = "DELETE FROM burgers WHERE id = %(id)s;"
         return connectToMySQL('login_reg').query_db(query,data)
+
+    @classmethod
+    def get_burger_with_toppings( cls , data ):
+        query = "SELECT * FROM burgers LEFT JOIN add_ons ON add_ons.burger_id = burgers.id LEFT JOIN toppings ON add_ons.topping_id = toppings.id WHERE burgers.id = %(id)s;"
+        results = connectToMySQL('login_reg').query_db( query , data )
+        # los resultados serán una lista de objetos topping (aderezo) con la hamburguesa adjunta a cada fila
+        burger = cls( results[0] )
+        for row_from_db in results:
+            # ahora parseamos los datos topping para crear instancias de aderezos y agregarlas a nuestra lista
+            topping_data = {
+                "id" : row_from_db["toppings.id"],
+                "topping_name" : row_from_db["topping_name"],
+                "created_at" : row_from_db["toppings.created_at"],
+                "updated_at" : row_from_db["toppings.updated_at"]
+            }
+            burger.toppings.append( topping.Topping( topping_data ) )
+        return burger
+    
+    @classmethod
+    def insert_toppings_to_burger( cls , data ):
+        query = "SELECT * FROM burgers LEFT JOIN add_ons ON add_ons.burger_id = burgers.id LEFT JOIN toppings ON add_ons.topping_id = toppings.id WHERE burgers.id = %(id)s;"
+        results = connectToMySQL('burgers').query_db( query , data )
+        # los resultados serán una lista de objetos topping (aderezo) con la hamburguesa adjunta a cada fila
+        burger = cls( results[0] )
+        for row_from_db in results:
+            # ahora parseamos los datos topping para crear instancias de aderezos y agregarlas a nuestra lista
+            topping_data = {
+                "id" : row_from_db["toppings.id"],
+                "topping_name" : row_from_db["topping_name"],
+                "created_at" : row_from_db["toppings.created_at"],
+                "updated_at" : row_from_db["toppings.updated_at"]
+            }
+            burger.toppings.append( topping.Topping( topping_data ) )
+        return burger

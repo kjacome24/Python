@@ -2,31 +2,56 @@ from flask_app import app
 from flask import render_template,redirect,request,session,flash
 from flask_app.models.burger import Burger
 from flask_app.models.restaurant import Restaurant
+from flask_app.models.topping import Topping
 
 @app.route('/')
 def index():
-    
+    all_toppings = Topping.get_all()
     all_restaurants = Restaurant.get_all()
+    ############THis code is just for testing
     print("---------------------------")
     data = {"id":'1'}
     x = Restaurant.get_restaurant_with_burgers(data) ########We call a function in restaurant that creates the object restaurant of the id we provide and it also creates the objects of the burguers. 
     print(x.name)######## This is the way to call the restaurant
-    for i in x.burgers:
+    for i in x.burgers: #####many to many
         print(i.name)
-    return render_template("index.html",all_restaurants=all_restaurants)
+    y = Burger.get_burger_with_toppings(data)
+    print(y.name)
+    for x in y.toppings:
+        print(x.topping_name)
+    #############End of the testing
+    return render_template("index.html",all_restaurants=all_restaurants,all_toppings=all_toppings)
 
 @app.route('/create',methods=['POST'])
 def create():
-    data = {
-        "name":request.form['name'],
-        "bun": request.form['bun'],
-        "meat": request.form['meat'],
-        "calories": request.form['calories'],
-        "restaurant_id": request.form['restaurant_id']
-
-    }
-    Burger.save(data)
-    return redirect('/burgers')
+    if request.form.get('which_form')=="register_burger":
+        data = {
+            "name":request.form['name'],
+            "bun": request.form['bun'],
+            "meat": request.form['meat'],
+            "calories": request.form['calories'],
+            "restaurant_id": request.form['restaurant_id'],
+            "topping_id": request.form['topping_id']
+        }
+        x = Burger.save(data)
+        data = {
+            "topping_id": request.form['topping_id'],
+            "burger_id": x[0]['id']
+        }
+        Topping.save_topic_in_burger(data)
+        return redirect('/burgers')
+    elif request.form.get('which_form')=="register_restaurant":
+        data = {
+            "name":request.form['restaurant_name'],
+        }
+        Restaurant.save(data)
+        return redirect('/')
+    elif request.form.get('which_form')=="register_topping":
+        data = {
+            "topping_name":request.form['topping_name'],
+        }
+        Topping.save(data)
+        return redirect('/')
 
 
 @app.route('/burgers')
