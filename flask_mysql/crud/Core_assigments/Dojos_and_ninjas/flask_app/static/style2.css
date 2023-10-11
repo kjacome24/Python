@@ -1,0 +1,55 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Preahvihear', sans-serif;
+}
+
+body{display: flex;
+    flex-direction: column;
+    height: 400px;}
+
+
+header{
+    flex: 0.5;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+main{
+flex:1;
+padding-left: 50px;
+padding-right: 50px;
+height: 300px;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+}
+
+footer{
+    flex: 1;
+    height: 200px;
+    width: 40%;
+    padding-left: 50px;
+    padding-right: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.optionx{width: 400px;}
+.inputx,.labelx{width: 200px;
+display: inline-block;}
+
+
+.btnx{
+    box-shadow: 5PX 5PX 0PX black; 
+    width: 100px;
+    margin-left: 100px;
+}
+
+.div1,.div2,.div3{width: 300px;
+display: flex;
+justify-content: space-around}
