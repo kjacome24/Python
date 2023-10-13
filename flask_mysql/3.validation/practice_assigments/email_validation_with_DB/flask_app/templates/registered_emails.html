@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!--Link for special fonts in google-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--Link for special fonts in google-->
+    <link href="https://fonts.googleapis.com/css2?family=Preahvihear&display=swap" rel="stylesheet"><!--Link for special fonts in google-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!--Link to style.css with jinja-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"><!--Link for boostrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script><!--script for boostrap-->
+    <script src="{{ url_for('static', filename='script.js') }}"></script> <!--Script for JS file if exists-->
+    <title>Email Validation with DB</title>
+</head>
+<body>
+    <header>
+        <div class="header1">
+            {% with messages = get_flashed_messages() %}  <!-- declara una variable llamada mensajes-->
+            {% if messages %}<!-- comprobar si hay algún mensaje -->
+                {% for message in messages %}<!-- recorrer los mensajes -->
+                    <h1 id="title_error" style="background-color: {{message[1]}};">{{message[0]}}</h1><!-- muestra cada mensaje en una etiqueta de párrafo -->
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        </div>
+    </header>
+    <main>
+        <div class="mainb">
+            <h1 style="text-decoration: underline;">Email Addresses Entered:</address></h1>
+            {% for i in emails %}
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="text-center upborder"><h2 class="ti">{{i.emails}}</h2></td> <!--We could also use the syntaxis i.id, i.first_name-->
+                        <td class="text-center upborder"><h2 class="ti">{{i.created_at}}</h2></td>
+                        <td class="text-center upborder"><a href="/delete/{{i.id}}"><h2>Delete</h2></a></td>
+                        <a href=""></a>
+                    </tr>
+                </tbody>
+            </table>
+            {%endfor%}
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>

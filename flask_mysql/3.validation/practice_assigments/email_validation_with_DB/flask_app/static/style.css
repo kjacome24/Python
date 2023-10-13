@@ -1,0 +1,75 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Preahvihear', sans-serif;
+}
+
+body{ 
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+}
+
+header{flex: 2;
+display: flex;}
+
+.header1{
+    flex: 1;
+    margin-top:100px;
+    margin-bottom:100px;
+    margin-left: 300px;
+    margin-right: 400px;
+    display: flex;
+}
+
+#title_error{flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid;
+    text-align: center;
+}
+
+main{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 100px;
+    padding-right: 150px;}
+
+form{   flex:1;
+        display: flex;
+        flex-direction: column;
+        font-size: larger;
+    }
+
+.div1{ flex:1;
+    width: 100%;}
+.div2{flex:1;
+    padding-left: 700px;}
+
+footer{
+    flex:1;}
+
+input{width: 1000px;}
+
+label{width: 200px;}
+
+.btnx{
+    width: 200px;
+    box-shadow: 5px 5px black;
+}
+
+.mainb{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;}
+
+td {margin: 0;
+}
+
+.ti{margin-left: 50px;
+    margin-right: 50px;
+    width: 600px;
+    display: flex;}
