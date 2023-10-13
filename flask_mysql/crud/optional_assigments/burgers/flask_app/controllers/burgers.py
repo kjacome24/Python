@@ -24,6 +24,9 @@ def index():
 
 @app.route('/create',methods=['POST'])
 def create():
+    print(request.form)
+    if not Burger.validate_burger(request.form):
+        return redirect('/')
     if request.form.get('which_form')=="register_burger":
         data = {
             "name":request.form['name'],

@@ -1,5 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models import topping
+from flask import flash
+
 class Burger:
     def __init__(self,data):
         self.id = data['id']
@@ -77,3 +79,32 @@ class Burger:
             }
             burger.toppings.append( topping.Topping( topping_data ) )
         return burger
+
+    @staticmethod
+    def validate_burger(burger):
+        is_valid = True # asumimos que esto es true
+        if len(burger['name']) < 3:
+            flash("Name must be at least 3 characters.")
+            is_valid = False
+        if len(burger['bun']) < 3:
+            flash("Bun must be at least 3 characters.")
+            is_valid = False
+        if burger['calories']=='' or int(burger['calories']) < 200:
+            flash("Please fill out the Calories field, it must be 200 or greater.")
+            is_valid = False
+        if len(burger['meat']) < 3:
+            flash("Bun must be at least 3 characters.")
+            is_valid = False
+        if len(burger['meat']) < 3:
+            flash("Bun must be at least 3 characters.")
+            is_valid = False
+        if burger['topping_id']=='':
+            flash("topping has not been added")
+            is_valid = False
+        if burger['restaurant_id']=='':
+            flash("Restaurant was not selected")
+            is_valid = False
+        return is_valid
+
+
+
