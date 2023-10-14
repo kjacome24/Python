@@ -31,12 +31,4 @@ def delete_by_user(id):
     return redirect ('/success')
 
 
-########THe following exmple get the id from the URL as input and then uses it for the query. 
-# @app.route('/users/<int:id>')
-# def filter_by_user(id):
-#     data = {'id': id}
-#     return render_template("show_user.html",users=File.filter_email(data))
-
-
-
 
