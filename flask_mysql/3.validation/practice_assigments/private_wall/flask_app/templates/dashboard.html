@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!--Link for special fonts in google-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--Link for special fonts in google-->
+    <link href="https://fonts.googleapis.com/css2?family=Preahvihear&display=swap" rel="stylesheet"><!--Link for special fonts in google-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!--Link to style.css with jinja-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"><!--Link for boostrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script><!--script for boostrap-->
+    <script src="{{ url_for('static', filename='script.js') }}"></script> <!--Script for JS file if exists-->
+    <title>Dashboard</title>
+</head>
+<body>
+    <header>
+        <div class="header1">
+            <h1 >CodingDojo Wall</h1>
+        </div>
+        <div class="header2">
+            <h1 >Welcome, {{session["first_name"]}}!</h1>
+            <form action="/destroy" method="post" class="text-light" id="form3">
+                    <input type="submit" value="Log out" class="btn btn-danger">
+            </form>
+        </div>
+    </header>
+    <main>
+        <div class="div1x card">
+            <div class="card-header1">
+                <h1 style="text-decoration: underline;" class="card-title"><span style="text-decoration: solid; color: green;">{{session["num_received_messages"]}}</span> Message(s) for you</h1>
+            </div>
+            {% for i in messages%}
+            <div class="card-body1">
+                <div>
+                    <h2 > {{i.sender_id.first_name}} said <span style="color:green">({{i.time_span()}} hours ago):</span></h2>
+                    <h2  class="extraborder"> "{{i.content}}"</h2>
+                </div>
+                <div>
+                    <a href="/delete/{{i.id}}"><h2>Delete</h2></a>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+        <div class="div2x card">
+
+            <div class="card-header2">
+                <h1 style="text-decoration: underline;" class="card-title"> Send Messages</h1>
+                <h2 style="color: green;">You have sent {{session["num_sent_messages"]}} messages so far.</h2>
+                {% with messages = get_flashed_messages() %}  <!-- declara una variable llamada mensajes-->
+                    {% if messages %}<!-- comprobar si hay algún mensaje -->
+                        {% for message in messages %}<!-- recorrer los mensajes -->
+                            <h1 id="title_error" style="color: red;">{{message}}</h1><!-- muestra cada mensaje en una etiqueta de párrafo -->
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            {% for i in users%}
+                <!-- {%if i.id!=session['id']%} -->
+            <div class="card-body2">
+                <form action="{{url_for('send_message')}}" method="post" id="form1x">
+                    <input type="hidden" name="receiver_id" value="{{i.id}}">
+                    <input type="hidden" name="sender_id" value="{{session['id']}}">
+                    <div class="sub1">
+                        <label for="message"><h2>{{i.first_name}}<h2></label>
+
+                    </div >
+                    <div class="sub2">
+                    <textarea  id="message" name="message" cols="35" rows="3"></textarea>
+                    </div>
+                    <div class="sub3">
+                        <input type="submit" value="Send" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+                <!-- {% endif %} -->
+            {% endfor %}
+
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>

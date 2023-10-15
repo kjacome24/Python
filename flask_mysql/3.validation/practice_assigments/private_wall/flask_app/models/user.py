@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
+from flask_app.models import message
 import re
 import datetime #####for date funtions
 from datetime import date #####for date funtions
@@ -10,8 +11,7 @@ NAME_REGEX= re.compile(r'[a-zA-Z]+$') #### Regular expresion for jus letters
 PASSWORD_REGEX= re.compile(r'^(?=.{8,})(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$')
 NUMBER_REGEX= re.compile(r'^[0-9]*$') #######regular expresion just for numbers
 
-
-date.today() - relativedelta(years=10)
+DB = "private_wall_schema"
 
 class User:
     def __init__( self , data ):
@@ -20,14 +20,21 @@ class User:
         self.last_name = data['last_name']
         self.email = data['email']
         self.password = data['password']
-        self.birthdate = data['birthdate']
-        self.favorite_language = data['favorite_language']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
     @classmethod
+    def get_all(cls):
+        query = "SELECT * FROM users order by first_name;"
+        results = connectToMySQL(DB).query_db(query)
+        users = []
+        for user in results:
+            users.append( cls(user) )
+        return users
+    
+    @classmethod
     def save(cls,data):
-        query = "INSERT INTO user ( first_name , last_name , email , password , birthdate , favorite_language, created_at, updated_at ) VALUES ( %(first_name)s , %(last_name)s , %(email)s , %(password)s , %(birthdate)s , %(favorite_language)s , NOW() , NOW() );"
-        mysql = connectToMySQL('login_and_registration_schema')
+        query = "INSERT INTO users ( first_name , last_name , email , password, created_at, updated_at ) VALUES ( %(first_name)s , %(last_name)s , %(email)s , %(password)s , NOW() , NOW() );"
+        mysql = connectToMySQL(DB)
         result = mysql.query_db(query, data)
         print(result)
         data_usuario = {'id': result}
@@ -35,8 +42,8 @@ class User:
     
     @classmethod
     def getId(cls, data):
-        query = "select * from user where id = %(id)s;"
-        mysql = connectToMySQL('login_and_registration_schema')
+        query = "select * from users where id = %(id)s;"
+        mysql = connectToMySQL(DB)
         result = mysql.query_db(query, data)
         if len(result) > 0:
             return cls(result[0])
@@ -44,8 +51,8 @@ class User:
             return None
     @classmethod
     def getbyemail(cls, data):
-        query = "select * from user where email = %(email)s;"
-        mysql = connectToMySQL('login_and_registration_schema')
+        query = "select * from users where email = %(email)s;"
+        mysql = connectToMySQL(DB)
         result = mysql.query_db(query, data)
         if len(result) > 0:
             return cls(result[0])
@@ -80,16 +87,6 @@ class User:
             if not PASSWORD_REGEX.match(data['password']):
                 flash(["Your password should have at least 8 characters with at least one lowercase and one uppercase ASCII character and also at least one character from the set @#$%^&+=, plus a number",0])
                 is_valid= False
-            x=data['birthdate']
-            if data['birthdate'] =='':
-                flash(["Please select your birthdate",0])
-                is_valid= False
-            elif datetime.date(int(x[0:4]),int(x[5:7]),int(x[8:10])) > (date.today() - relativedelta(years=10)):
-                flash(["You must be at least 10 years old to register",0])
-                is_valid= False
-            if data['favorite_language'] =='':
-                flash(["Please select your favorite language",0])
-                is_valid= False
         else:
             if not EMAIL_REGEX.match(data['email']): 
                 flash(["Invalid email address!",1])
@@ -106,15 +103,7 @@ class User:
 
 
 
-####simple example to create query and create objects. 
-    # @classmethod
-    # def get_all(cls):
-    #     query = "SELECT * FROM user;"
-    #     results = connectToMySQL('login_and_registration_schema').query_db(query)
-    #     users = []
-    #     for user in results:
-    #         users.append( cls(user) )
-    #     return users
+
 
 ####example to insert data in database, this can be also for delete or update
 
@@ -123,14 +112,14 @@ class User:
     # @classmethod
     # def last_id(cls):
     #     query = "select id FROM user order by id desc limit 1;"
-    #     results= connectToMySQL('login_and_registration_schema').query_db(query)
+    #     results= connectToMySQL(DB).query_db(query)
     #     return results
 
 #example to query with inputs
     # @classmethod
     # def filter_email(cls,data):
     #     query = "select * FROM user where id=%(id)s;"
-    #     results= connectToMySQL('login_and_registration_schema').query_db(query,data)
+    #     results= connectToMySQL(DB).query_db(query,data)
     #     users = []
     #     for user in results:
     #         users.append(cls(user))
