@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!--Link for special fonts in google-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--Link for special fonts in google-->
+    <link href="https://fonts.googleapis.com/css2?family=Preahvihear&display=swap" rel="stylesheet"><!--Link for special fonts in google-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style3.css') }}"> <!--Link to style.css with jinja-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"><!--Link for boostrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script><!--script for boostrap-->
+    <script src="{{ url_for('static', filename='script.js') }}"></script> <!--Script for JS file if exists-->
+    <title>Recipes index</title>
+</head>
+<body>
+    <header>
+        <div class="box_header1">
+            <h1 >Edit Recipe!</h1>
+        </div>
+        <div class="box_header2">
+            <a href="{{ url_for('dashboard') }}">Back to recipes</a>
+            <a href="{{ url_for('log_out') }}">Logout</a>
+        </div>
+    </header>
+            {% with messages = get_flashed_messages() %}  <!-- declara una variable llamada mensajes-->
+            {% if messages %}<!-- comprobar si hay algún mensaje -->
+                {% for message in messages %}<!-- recorrer los mensajes -->
+                    <p style="color: red;margin-left: 50px;">{{message}}</p><!-- muestra cada mensaje en una etiqueta de párrafo -->
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    <main>
+        <div class="box1">
+            <form class="form_divided" action="{{ url_for('create_update_recipe') }}" method="POST">
+                <div class="div_form1">
+                    <div class="div_labels1">
+                        <input type="hidden" name="which_form" value="edit_old">
+                        <input type="hidden" name="id" value="{{recipe.id}}">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" id="name" value="{{recipe.name}}">
+                    </div>
+                    <div class="div_labels2">
+                        <label for="description">Description:</label>
+                        <textarea  id="description" name="description" cols="20" rows="3">{{recipe.description}}</textarea>
+                    </div>
+                    <div class="div_labels3">
+                        <label for="instructions">Instructions:</label>
+                        <textarea  id="instructions" name="instructions" cols="20" rows="3">{{recipe.instructions}}</textarea>
+                    </div>
+                    <div class="btndiv div_labels4">
+                    </div>
+                </div>
+                <div class="div_form2">
+                    <div class="div_labels2b">
+                        <label for="date_cooked">Date Cooked/Made:</label>
+                        <input type="date" id="date_cooked" name="date_cooked" value="{{recipe.date_cooked}}"></p>
+                    </div>
+                    <div class="div_labels3b">
+                        <p>Under 30 minutes:</p>
+                        <div id="input_radio">
+                            {% if recipe.under_30_min=='Yes' %}
+                            <div class="extr1">
+                                <label class="exeption" for="under_30_min">Yes</label>
+                                <input class="exeption" type="radio" id="under_30_min" name="under_30_min" value="Yes" checked>
+                            </div>
+                            <div class="extr2">
+                                <label class="exeption"for="under_30_min">No</label>
+                                <input class="exeption" type="radio" id="under_30_min" name="under_30_min" value="No">
+                            </div>
+                            {% else %}
+                            <div class="extr1">
+                                <label class="exeption" for="under_30_min">Yes</label>
+                                <input class="exeption" type="radio" id="under_30_min" name="under_30_min" value="Yes" >
+                            </div>
+                            <div class="extr2">
+                                <label class="exeption"for="under_30_min">No</label>
+                                <input class="exeption" type="radio" id="under_30_min" name="under_30_min" value="No" checked>
+                            </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div class="btndiv div_labels4b">
+                        <input class='btnx' type="submit" value="Submit">
+                    </div>
+                </div>
+            </form>
+        </div> 
+    </main>
+    <footer>
+            
+    </footer>
+
+</body>
+</html>
