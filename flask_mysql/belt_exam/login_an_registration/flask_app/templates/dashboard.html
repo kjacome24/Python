@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!--Link for special fonts in google-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--Link for special fonts in google-->
+    <link href="https://fonts.googleapis.com/css2?family=Preahvihear&display=swap" rel="stylesheet"><!--Link for special fonts in google-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!--Link to style.css with jinja-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"><!--Link for boostrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script><!--script for boostrap-->
+    <script src="{{ url_for('static', filename='script.js') }}"></script> <!--Script for JS file if exists-->
+    <title>Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1 class="text-success">Hello {{session["first_name"]}}! Welcome to you dashboard.:</h1>
+        <form action="/destroy" method="post" class="text-light" id="form3">
+                <input type="submit" value="Log out" class="btn btn-danger">
+        </form>
+    </header>
+    <main>
+        <div class="div1x card">
+            <div class="card-body">
+                <h5 class="card-title">ID User {{session["id"]}}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">Full Name:  {{session["first_name"]}}  {{session["last_name"]}}</h6>
+                <p class="card-text">Favorite language:  {{session["favorite_language"]}}</p>
+                <p class="card-text">Birthdate:  {{session["birthdate"]}}</p>
+            </div>
+        </div>
+        <div class="div2x card">
+            <div class="card-body">
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam culpa ullam, dolores fugiat velit ab, consequuntur vitae deserunt numquam hic quo magni at fugit. Debitis nostrum facere beatae ut. Quis impedit aspernatur a assumenda rerum eligendi illum aliquid tempora necessitatibus odit! Quaerat dolores officia corporis quisquam vel pariatur voluptas saepe nesciunt repellat nam enim incidunt accusantium delectus praesentium quibusdam, veniam consequuntur vero illum assumenda accusamus similique, dolor sint! Exercitationem nesciunt itaque optio quos assumenda possimus quod est iusto ipsum dolores! Labore laboriosam adipisci quae eius quam earum enim ullam vitae ducimus, minima corporis cupiditate laborum perspiciatis veniam distinctio nemo facere eligendi, iusto id in nihil quidem fugit. Vitae eligendi fugiat itaque alias beatae dolore ad voluptatem culpa omnis, quae qui soluta possimus repellendus ea optio? Officiis molestiae magnam vel iste vero repellendus perspiciatis molestias cum quidem. Nisi, reiciendis repudiandae possimus quo deleniti enim nobis laboriosam, autem in cumque recusandae nostrum eaque voluptatem cum. Ex cupiditate porro nesciunt sequi aliquam aspernatur, tempore in corporis molestias eligendi, ducimus sit nemo, inventore esse necessitatibus neque! Eligendi quibusdam modi optio enim voluptatibus sint, veniam asperiores iste reiciendis! Quae architecto eos quia quod vero! Modi obcaecati laboriosam omnis eligendi totam quas laborum? Est, dolorum provident.</p>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>
