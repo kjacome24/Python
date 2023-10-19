@@ -1,0 +1,81 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Preahvihear', sans-serif;
+}
+
+
+body{display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 700px;}
+
+
+header{
+    flex: 0;
+}
+
+main{
+    flex:4;
+    display: flex;
+    margin: 2%;
+}
+
+footer{
+    flex: 1;
+    margin: 2%;
+}
+
+input{width: 300px;}
+
+label{width:200px}
+
+/*Classes and blocks inside*/
+
+.box1{
+    flex:1;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-left: 1%;
+    display: flex;
+    border: 2px solid black;
+    position: relative;
+}
+
+.box2{
+    flex:1;
+    height: 50%;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-left: 1%;
+    display: flex;
+    border: 2px solid black;
+    position: relative;
+}
+
+.form{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btndiv{
+    display: flex;
+    justify-content: center;
+}
+
+.btnx{
+    box-shadow: 5PX 5PX 0PX black; 
+    width: 100px;
+    margin-bottom: 5%;
+    }  
+
+/*Special configs*/
+#special_title1,#special_title2{
+    position: absolute;
+    top:-5%;
+    background-color: white;
+    padding-left: 1%;
+    padding-right: 1%;
+    }

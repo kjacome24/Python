@@ -1,0 +1,119 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Preahvihear', sans-serif;
+}
+
+body{display: flex;
+    flex-direction: column;
+    height: 800px;}
+
+header{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid black;
+}
+
+
+.header1{
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2%;
+    margin-right: 2%;
+    align-items: center;
+
+}
+
+.header2{
+    flex: 0.5;
+    display: flex;
+    margin-left: 2%;
+    margin-right: 2%;
+    align-items: center;
+}
+
+#form_thought{
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+}
+
+.btnx{
+    box-shadow: 5PX 5PX 0PX black; 
+    width: 100px;
+    margin-bottom: 5%;
+    }  
+
+#btnx_long{
+    width: 200px;
+    box-shadow: 5PX 5PX 0PX black; 
+    width: 200px;
+    margin-bottom: 0%;
+    margin-left: 1%;
+}
+
+#new_thought{width: 800px}
+/*-------------------------------------------------------*/
+
+main{
+    flex:3;
+    display: flex;
+    margin-top: 1%;
+    flex-direction: column;
+}
+
+.main_1{
+    flex: 1;
+    display: flex;
+    margin-left: 2%;
+}
+
+.main_a{
+    flex:1;
+}
+
+.main_b{
+    flex:3;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.main_b1{
+    flex: 5;
+    margin: 1%;
+    border: 2px solid black;
+}
+
+.main_b2{
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 5%;
+}
+
+.main_c{
+    flex:2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+/*-------------------------------------------------------*/
+
+
+
+
+
+
+
