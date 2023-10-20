@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Preahvihear&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="box_header1">
+            <h1>{{session["first_name"]}}'s Purchases</h1>
+
+        </div>
+        <div class="box_header2">
+            <div class="extraheader">
+            <form class="form" action="{{url_for('dashboard')}}" method="POST">
+                <input id="btxn1" class='btnx' type="submit" value="Dashboard">
+            </form>
+            <form class="form" action="{{url_for('log_out')}}" method="POST">
+                <input class='btnx' type="submit" value="logout">
+            </form>
+            </div>
+        </div>
+    </header>
+    <main>
+        <table class="table table-striped table-hover" id="upborder2">
+            <thead>
+                <tr  class="table-secondary upborder">
+                    <th class="text-center upborder">Make</th>
+                    <th class="text-center upborder">Model</th>
+                    <th class="text-center upborder">Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in user.cars %}
+                    <tr onmouseover="shadow(this)" onmouseout="unshadow(this)">
+                        <td class="text-center upborder">{{i.make}}</td>
+                        <td class="text-center upborder">{{i.model}}</td>
+                        <td class="text-center upborder">{{i.year}}</td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>

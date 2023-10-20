@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!--Link for special fonts in google-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--Link for special fonts in google-->
+    <link href="https://fonts.googleapis.com/css2?family=Preahvihear&display=swap" rel="stylesheet"><!--Link for special fonts in google-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style3.css') }}"> <!--Link to style.css with jinja-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"><!--Link for boostrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script><!--script for boostrap-->
+    <script src="{{ url_for('static', filename='script.js') }}"></script> <!--Script for JS file if exists-->
+    <title>Recipes index</title>
+</head>
+<body>
+    <header>
+        <div class='header1a'>
+            <h1>Put Car Up For Sale</h1>
+        </div>
+        <div class='header1b'>
+            <form class="form" action="/user/{{session.id}}" method="POST">
+                <input id="btxn1" class='btnx' type="submit" value="My Purchases">
+            </form>
+            <form class="form" action="{{url_for('dashboard')}}" method="POST">
+                <input id="btxn2" class='btnx' type="submit" value="Dashboard">
+            </form>
+            <form class="form" action="{{url_for('log_out')}}" method="POST">
+                <input class='btnx' type="submit" value="logout">
+            </form>
+        </div>
+    </header>
+            {% with messages = get_flashed_messages() %}  <!-- declara una variable llamada mensajes-->
+            {% if messages %}<!-- comprobar si hay algún mensaje -->
+                {% for message in messages %}<!-- recorrer los mensajes -->
+                    <p style="color: red;margin-left: 50px;">{{message}}</p><!-- muestra cada mensaje en una etiqueta de párrafo -->
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    <main>
+        <div class="box1">
+            <form class="form_divided" action="{{ url_for('add_car_form') }}" method="POST">
+                <div class="div_form1">
+                    <div class="div_labels1">
+                        <label for="price">Price:</label>
+                        <input type="number" min="0" name="price" id="price" value="0">
+                    </div>
+                    <div class="div_labels1">
+                        <label for="model">Model:</label>
+                        <input type="text" name="model" id="model" value="">
+                    </div>
+                    <div class="div_labels1">
+                        <label for="make">Make:</label>
+                        <input type="text" name="make" id="make" value="">
+                    </div>
+                    <div class="div_labels1">
+                        <label for="year">Year:</label>
+                        <input type="number" min="0" name="year" id="year" value="2023">
+                    </div>
+                    <div class="div_labels1">
+                    <label for="description">Description:</label>
+                    <textarea  id="description" name="description" cols="20" rows="3"></textarea>
+                    </div>
+                    <div id="extra_div" class="div_labels1">
+                    <input id="btx_update" type="submit" value="Add">
+                    </div>
+                </div>
+            </form>
+        </div> 
+    </main>
+    <footer>
+            
+    </footer>
+</body>
+</html>
