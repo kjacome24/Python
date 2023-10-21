@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Preahvihear&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="box_header1">
+            <h1>Sasquatch Websighting</h1>
+        </div>
+        <div class="box_header2">
+            <h2>{{session["first_name"]}} {{session["last_name"]}}</h2>
+            <form class="form" action="{{url_for('new_sighting')}}" method="POST">
+                <input id="btxn1" class='btnx' type="submit" value="Report a Sighting">
+            </form>
+            <form class="form" action="{{ url_for('log_out') }}" method="POST">
+                <input class='btnx' type="submit" value="logout">
+            </form>
+        </div>
+    </header>
+    <main>
+        <h2>Reported Sightings</h2>
+        <table class="table table-striped table-hover" id="upborder2">
+            <tbody>
+                {% for i in x %}
+                    <tr onmouseover="shadow(this)" onmouseout="unshadow(this)">
+                        <td class="text-center upborder"> Skeptics: <br>{{i.likes_counter}}</td>
+                        <td class="text-center upborder">{{i.location}} - {{i.date_of_sighting}} <br> Reported by : {{i.owner_sighting.first_name}} {{i.owner_sighting.last_name}}</td>
+                        {% if i.owner_sighting.id==session['id'] %}
+                        <td class="text-center upborder"><a href="/sighting/edit/{{i.id}}">Edit</a>  | <a href="/sighting/{{i.id}}/destroy">Delete</a></td>
+                        {% else %}
+                        <td class="text-center upborder"><a href="/sighting/{{i.id}}">View</a></td>
+                        {% endif %}
+                    </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>

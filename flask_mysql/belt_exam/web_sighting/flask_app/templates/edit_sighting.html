@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!--Link for special fonts in google-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--Link for special fonts in google-->
+    <link href="https://fonts.googleapis.com/css2?family=Preahvihear&display=swap" rel="stylesheet"><!--Link for special fonts in google-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style3.css') }}"> <!--Link to style.css with jinja-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"><!--Link for boostrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script><!--script for boostrap-->
+    <script src="{{ url_for('static', filename='script.js') }}"></script> <!--Script for JS file if exists-->
+    <title>Recipes index</title>
+</head>
+<body>
+    <header>
+        <div class="box_header1">
+            <h1 >Sasquatch Websighting</h1>
+        </div>
+        <div class="box_header2">
+            <h2>{{session["first_name"]}} {{session["last_name"]}}</h2>
+            <form class="form" action="{{url_for('dashboard')}}" method="POST">
+                <input id="btxn1" class='btnx' type="submit" value="Dashboard">
+            </form>
+            <form class="form" action="{{ url_for('log_out') }}" method="POST">
+                <input class='btnx' type="submit" value="logout">
+            </form>
+        </div>
+    </header>
+            {% with messages = get_flashed_messages() %}  <!-- declara una variable llamada mensajes-->
+            {% if messages %}<!-- comprobar si hay algún mensaje -->
+                {% for message in messages %}<!-- recorrer los mensajes -->
+                    <p style="color: red;margin-left: 50px;">{{message}}</p><!-- muestra cada mensaje en una etiqueta de párrafo -->
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    <main>
+        <div class="box1">
+            <form class="form_divided" action="{{ url_for('create_update_sighting') }}" method="POST">
+                <div class="div_form1">
+                    <h2 >Edit this Sighting</h2>
+                    <div class="div_labels1">
+                        <input type="hidden" name="which_form" value="edit_old">
+                        <input type="hidden" name="id" value="{{sighting.id}}">
+                        <label for="name">Location:</label>
+                        <input type="text" name="location" id="location" value="{{sighting.location}}">
+                    </div>
+                    <div class="div_labels3">
+                    </div>
+                    <div class="div_labels2">
+                        <label for="description">What happened:</label>
+                        <textarea  id="description" name="description" cols="20" rows="3">{{sighting.description}}</textarea>
+                    </div>
+
+                    <div class="btndiv div_labels4">
+                        <input class='btnx' type="submit" value="Submit">
+                    </div>
+                </div>
+                <div class="div_form2">
+                    <div class="div_labels2b">
+                        <label for="date_of_sighting">Date of sighting:</label>
+                        <input type="date" id="date_of_sighting" name="date_of_sighting" value="{{sighting.date_of_sighting}}"></p>
+                    </div>
+                    <div class="div_labels3b">
+                        <label for="number_of_sesquatches"># of Sesquatches:</label>
+                        <input type="number" min="0" name="number_of_sesquatches" id="number_of_sesquatches" value="{{sighting.number_of_sesquatches}}">
+                    </div>
+                    </div>
+                    <div class="btndiv div_labels4b">
+                    </div>
+                </div>
+            </form>
+        </div> 
+    </main>
+    <footer>
+            
+    </footer>
+
+</body>
+</html>
