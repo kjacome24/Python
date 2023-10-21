@@ -9,7 +9,7 @@ body{display: flex;
     height: 700px;}
 
 header{
-    flex: 1;
+    flex: 0.5;
     padding-left: 2%;
     padding-right: 2%;
     padding-top: 3%;
@@ -29,7 +29,7 @@ footer{
     padding-left: 2%;
     padding-right: 2%;
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
 }
 
 table{
@@ -55,13 +55,17 @@ tH, td{
 
 /*Classes*/
 .box_header1{
-    flex: 4
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .box_header2{
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: flex-end;
     
 }
 
@@ -74,3 +78,14 @@ tH, td{
 
 #btxn1{width: 200px;
         padding-right: 5%;}
+
+.extraheader{
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form{
+    padding-right: 5%;
+
+}

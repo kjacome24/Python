@@ -1,4 +1,4 @@
-from flask_app.controllers import sightings
+from flask_app.controllers import cars
 from flask_app.controllers import users
 from flask_app import app
 

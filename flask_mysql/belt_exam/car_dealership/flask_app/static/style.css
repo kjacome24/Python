@@ -11,7 +11,8 @@ body{display: flex;
     height: 700px;}
 
 
-
+header{
+}
 
 main{
     flex:4;
@@ -53,7 +54,7 @@ label{width:200px}
 
 .btndiv{
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 .btnx{
@@ -66,3 +67,14 @@ label{width:200px}
     color: blueviolet;
     font-weight: bolder;
     }
+
+.div_input{
+    display: flex;
+    flex-direction: column;
+}
+
+.title1{display: flex;
+    justify-content: center;}
+
+.title2{display: flex;
+    justify-content: center;}

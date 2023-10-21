@@ -4,7 +4,7 @@ import re
 import datetime
 from datetime import date
 from dateutil.relativedelta import relativedelta
-from flask_app.models import sighting
+from flask_app.models import car
 
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
@@ -12,8 +12,8 @@ NAME_REGEX= re.compile(r'[a-zA-Z]+$') #### Regular expresion for jus letters
 PASSWORD_REGEX= re.compile(r'^(?=.{8,})(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$')
 NUMBER_REGEX= re.compile(r'^[0-9]*$') #######regular expresion just for numbers
 
-DB = 'recipes_schema'
-
+DB = 'car_dealership_schema'
+########################Login and registration
 class User:
     def __init__( self , data ):
         self.id = data['id']
@@ -23,6 +23,7 @@ class User:
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.cars = []
 
     @classmethod
     def get_all(cls):
@@ -38,7 +39,6 @@ class User:
         query = "INSERT INTO users ( first_name , last_name , email , password, created_at, updated_at ) VALUES ( %(first_name)s , %(last_name)s , %(email)s , %(password)s , NOW() , NOW() );"
         mysql = connectToMySQL(DB)
         result = mysql.query_db(query, data)
-        print(result)
         data_usuario = {'id': result}
         return cls.getId(data_usuario)
     
@@ -50,9 +50,7 @@ class User:
         if len(result) > 0:
             return cls(result[0])
         else:
-            print("consult was completed adn is returning none")
             return None
-
     @classmethod
     def getbyemail(cls, data):
         query = "select * from users where email = %(email)s;"
@@ -99,3 +97,27 @@ class User:
                 flash(["The password should have at least 8 characters",1])
                 is_valid = False
         return is_valid
+    
+
+################################Many to many 
+
+    @classmethod
+    def get_user_with_purchases( cls , data ):
+        query = "select * from users as table1 left join purchases as table2 on table1.id=table2.user_id left join cars as table3 on table2.car_id=table3.id where table1.id= %(id)s;"
+        results = connectToMySQL(DB).query_db( query , data )
+        # los resultados serán una lista de objetos topping (aderezo) con la hamburguesa adjunta a cada fila
+        user = cls( results[0] )
+        for row_from_db in results:
+            # ahora parseamos los datos topping para crear instancias de aderezos y agregarlas a nuestra lista
+            car_data = {
+                "id" : row_from_db["table3.id"],
+                "price" : row_from_db["price"],
+                "model" : row_from_db["model"],
+                "year" : row_from_db["year"],
+                "make" : row_from_db["make"],
+                "description" : row_from_db["description"],
+                "created_at" : row_from_db["table3.created_at"],
+                "updated_at" : row_from_db["table3.updated_at"]
+            }
+            user.cars.append( car.Car( car_data ) )
+        return user
